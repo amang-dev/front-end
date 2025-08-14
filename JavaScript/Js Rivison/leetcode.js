@@ -43,29 +43,75 @@
 // console.log(calc(7).sub(3));  
 
 
-    var createCounter = function(init) {
+//     var createCounter = function(init) {
 
-    return obj = {
-        increment(init){
-          var a  = init++
-          return a 
-        },
+//     return obj = {
+//         increment(init){
+//           var a  = init++
+//           return a 
+//         },
     
-        decrement(init){
-          var b  = --init
-          return b 
-        },
+//         decrement(init){
+//           var b  = --init
+//           return b 
+//         },
 
-        reset(init){
-          var c = init
-          return c
-        }
+//         reset(init){
+//           var c = init
+//           return c
+//         }
 
+//     }
+// };
+
+
+// const counter = createCounter()
+// console.log(counter.increment(5));
+// console.log(counter.reset(5));
+// console.log(counter.decrement(5));
+
+
+
+function square (n){
+  return n*n
+}
+
+function memoize(func){
+   let cache ={}
+
+   return function(...args){
+    
+    let n = args[0]
+
+    if(n in args){
+      return cache[n]
     }
-};
+
+    else{
+      let result = func(n)
+      cache[n] = result
+      return result
+    }
+
+   }
+}
 
 
-const counter = createCounter()
-console.log(counter.increment(5));
-console.log(counter.reset(5));
-console.log(counter.decrement(5));
+console.time();
+let effResult = memoize(square)
+console.log(effResult(5));
+console.timeEnd();
+
+console.time();
+console.log(effResult(5));
+console.timeEnd();
+
+
+
+
+ 
+// console.time();
+// console.log(square(5));
+// console.timeEnd();
+
+
